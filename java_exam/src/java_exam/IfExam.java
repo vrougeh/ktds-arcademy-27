@@ -46,9 +46,10 @@ public class IfExam {
 			System.out.println("error");
 		}
 		
+		
+		
 		if (randomNumber >= 90) {
 			System.out.println("90 범위의 숫자가 나왔습니다");
-			
 		}else if (randomNumber >= 80) {
 			System.out.println("80 범위의 숫자가 나왔습니다");
 		}else if (randomNumber >= 70) {
@@ -58,10 +59,6 @@ public class IfExam {
 		}else if (randomNumber >= 50) {
 			System.out.println("50 범위의 숫자가 나왔습니다");
 		}
-		
-		
-		
-
 	}
 
 }
