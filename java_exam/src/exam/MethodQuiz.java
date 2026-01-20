@@ -114,9 +114,7 @@ public class MethodQuiz {
 	
 	//8
 	public static int getSumOfFive(int num1,int num2,int num3,int num4,int num5) {
-		int result = num1 +num2 +num3 +num4 +num5;
-		
-		
+		int result = num1 +num2 +num3 +num4 +num5;		
 		return result;
 	}
 	
@@ -148,7 +146,6 @@ public class MethodQuiz {
 	//11
 	public static String nextChar(char chr) {
 		char result = (char) (chr +1);
-		
 		return result + "";
 	}
 	
@@ -159,15 +156,15 @@ public class MethodQuiz {
 		for(int i = chr1 ; i <= chr2 ; i++) {
 			result += (char)i + "";
 		}
-		
 		return result;
 	}
 	
 	
 	//13
 	public static String getLowerCaseAlpha(char chr, int num) {
-		char result = (char)(chr + num);
-		if(result >= 'a' && result <= 'z') {
+		char result = ' ';
+		if(num >= 0 && num <= 25) {
+			result = (char)(chr + num);
 			return result+ "";
 		}
 		return "";
@@ -176,14 +173,13 @@ public class MethodQuiz {
 	
 	//14
 	public static String convertUpperCase(char chr) {
-		char result = chr;
-		if(result >= 'a'&& result <= 'z' ) {			
+		char result = ' ';
+		if(chr>= 'a'&& chr <= 'z' ) {			
 			result = (char)(chr - 32);
+			return result + "";
 		}else {
 			return "";
 		}
-		
-		return result + "";
 	}
 	
 	
@@ -192,6 +188,7 @@ public class MethodQuiz {
 		printSum(10);
 		printPrime(20);
 		printMax(10,20);
+		
 		printAge(35);
 		printAge(15);
 		
@@ -202,17 +199,23 @@ public class MethodQuiz {
 		System.out.println(getFizzBuzz(7));
 		
 		
+		
 		System.out.println(Arrays.toString(getUniqueNumbers()));
+		
 		
 		
 		System.out.println(getEvenOdd(4, 5));
 		System.out.println(getEvenOdd(3, 5));
-
+		
 		
 		
 		System.out.println(getSumOfFive(1,2,3,4,5));
 		
+		
+		
 		System.out.println(getAerage(150, 3));
+		
+		
 		
 		System.out.println(getGrade(95));
 		System.out.println(getGrade(85));
@@ -241,8 +244,11 @@ public class MethodQuiz {
 		System.out.println(getLowerCaseAlpha('a',26));
 		
 		
+		
 		System.out.println(convertUpperCase('a'));
 		System.out.println(convertUpperCase('c'));
+		
+		
 		
 		System.out.println(convertUpperCase('1'));
 		System.out.println(convertUpperCase('A'));
