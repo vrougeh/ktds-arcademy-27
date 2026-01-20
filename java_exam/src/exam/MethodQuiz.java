@@ -54,7 +54,7 @@ public class MethodQuiz {
 	public static void printAge(int num) {
 		if(num > 19) {
 			System.out.println("성인");
-		}else if(num < 19 && num >= 0) {
+		}else if(num >= 0) {
 			System.out.println("미성년");
 		}else {
 			System.out.println("error");
@@ -85,8 +85,8 @@ public class MethodQuiz {
 		boolean existsNumber = false;
 		
 		for(int i = 0 ; i < intarr.length ; i ++) {
+			existsNumber = false;
 			uniqueNumber  = (int)(Math.random() *45+1);
-			
 			for(int j = 0 ; j < i ; j++) {
 				if(intarr[j] == uniqueNumber) {
 					existsNumber = true;
@@ -96,6 +96,8 @@ public class MethodQuiz {
 			
 			if(!existsNumber) {
 				intarr[i] = uniqueNumber;
+			}else {
+				i--;
 			}
 		}
 		return intarr;
@@ -120,8 +122,9 @@ public class MethodQuiz {
 	
 	
 	//9
-	public static int getAerage(int sum, int num) {
-		return sum/num;
+	public static double getAverage(int sum, int num) {
+		if (num == 0) return 0.00;
+		return (double) sum/num;
 	}
 	
 	
@@ -213,7 +216,7 @@ public class MethodQuiz {
 		
 		
 		
-		System.out.println(getAerage(150, 3));
+		System.out.println(getAverage(150, 3));
 		
 		
 		

@@ -28,7 +28,7 @@ public class ScoreCalculator {
 		}else if(average >= 60){
 			return "D";
 		}else {
-			return "";
+			return "F";
 		}
 	}
 
