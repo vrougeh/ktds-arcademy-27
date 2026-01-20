@@ -3,7 +3,6 @@ package exam;
 public class IfQuiz2 {
 
 	public static void main(String[] args) {
-		// TODO Auto-generated method stub
 		
 		int money = 1_000_000;
 		
@@ -13,34 +12,29 @@ public class IfQuiz2 {
 		int adultOneWayFlightFare = 300_000;
 		int kidOneWayFlightFare = 120_000;
 	
+		int flightFare = 0;
 		
-		if (father > 19) {
-			money = (money - adultOneWayFlightFare);
-		}else {
-			money = money - kidOneWayFlightFare;			
-		}
-
-		if (mother > 19) {
-			money = money - adultOneWayFlightFare;
-		}else {
-			money = money - kidOneWayFlightFare;			
-		}
+		flightFare += getFlightFare(father);
+		flightFare += getFlightFare(mother);
+		flightFare += getFlightFare(daughter);
 		
-		if (daughter > 19) {
-			money = money - adultOneWayFlightFare;
-		}else {
-			money = money - kidOneWayFlightFare;			
-		}
+		System.out.println(money - flightFare);
 		
-		System.out.println(money);
-		
-		if (money  > 0) {
+		if (money > flightFare) {
 			System.out.println("여행가자!");
 		}else {
 			System.out.println("다음에가자");
 		}
 		
 
+	}
+	
+	public static int getFlightFare(int age) {
+		if (age > 19) {
+			return 330000;
+		}else {
+			return 100000;
+		}
 	}
 
 }

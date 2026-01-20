@@ -3,7 +3,6 @@ package exam;
 public class Q1000 {
 
 	public static void main(String[] args) {
-		// TODO Auto-generated method stub
 		
 		//1000
 		int a = 1;

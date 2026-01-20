@@ -5,7 +5,6 @@ import java.util.Scanner;
 public class Q2739 {
 
 	public static void main(String[] args) {
-		// TODO Auto-generated method stub
 		//Q2739
 		Scanner keyboard = new Scanner(System.in);
 		

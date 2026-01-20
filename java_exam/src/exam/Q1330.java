@@ -3,7 +3,6 @@ package exam;
 public class Q1330 {
 
 	public static void main(String[] args) {
-		// TODO Auto-generated method stub
 		
 		//Q1330
 		int num1 = 1;

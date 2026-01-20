@@ -3,7 +3,6 @@ package exam;
 public class Q10807 {
 
 	public static void main(String[] args) {
-		// TODO Auto-generated method stub
 		
 		int arrnum = 11;
 		int[] arr = new int[arrnum];

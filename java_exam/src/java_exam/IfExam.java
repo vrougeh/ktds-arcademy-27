@@ -3,7 +3,6 @@ package java_exam;
 public class IfExam {
 
 	public static void main(String[] args) {
-		// TODO Auto-generated method stub
 		
 		int randomNumber = (int)(Math.random() * 100);
 		System.out.println(randomNumber);
