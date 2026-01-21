@@ -15,7 +15,7 @@ public class ScoreCalculator {
 	}
 	
 	public static double calcAverage(int amount, int subjectCount) {
-		return amount/subjectCount;
+		return amount/(double)subjectCount;
 	}
 	
 	public static String calcGrade(double average) {
@@ -31,5 +31,4 @@ public class ScoreCalculator {
 			return "F";
 		}
 	}
-
 }
