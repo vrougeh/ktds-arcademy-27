@@ -15,11 +15,11 @@ public class RestorentTest {
 		Restorent test = new Restorent();
 		
 		// 줄서있는 손님의 팀을 세팅
-		test.setGustTeamCount(25);
+		test.setGuestTeamCount(25);
 
 		// 이번에 입장할 팀의 손님수 세팅
 		test.setGuestCount(4);
-		System.out.println("남은 팀 수 : "+ test.getGustTeamCount());
+		System.out.println("남은 팀 수 : "+ test.getGuestTeamCount());
 		System.out.println("해당 팀의 손님의 수 : "+ test.getGuestCount());
 		//손님 입장
 		test.enterGuest(1);
@@ -38,12 +38,21 @@ public class RestorentTest {
 		test.payMoney();
 		//나가기
 		
-		System.out.println("남은 팀 수 : "+ test.getGustTeamCount());
+		System.out.println("남은 팀 수 : "+ test.getGuestTeamCount());
 		System.out.println("해당 팀의 손님의 수 : "+ test.getGuestCount());
 		System.out.println("테이블 번호 : "+test.getTableCount());
 		System.out.println("해당 매장의 총 매출 수 : "+test.getTotalCost());
 
 		
+		
+//		남은 팀 수 : 25
+//		해당 팀의 손님의 수 : 4
+//		테이블 번호 : 1
+//		true
+//		남은 팀 수 : 23
+//		해당 팀의 손님의 수 : 4
+//		테이블 번호 : 2
+//		해당 매장의 총 매출 수 : 36000		
 	}
 
 }

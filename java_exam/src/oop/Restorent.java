@@ -1,15 +1,10 @@
 package oop;
 
 /*
- * 레스토랑 관리인?
- * 손님 종업원 요리사
- * 
- * 키오스크 주방order기기 퇴식구
- * 
- * 계산
+ * 함바집 사장님 관점에서 
  */
 public class Restorent {
-	
+	//TODO 4인 1table 구현
 	int guestCount;
 	int guestTeamCount;
 	int totalTableCount = 20;
@@ -22,11 +17,11 @@ public class Restorent {
 	/**
 	 * 손님의 총 팀 세팅
 	 */
-	public void setGustTeamCount(int num) {
+	public void setGuestTeamCount(int num) {
 		guestTeamCount = num;
 	}
 	
-	public int getGustTeamCount() {
+	public int getGuestTeamCount() {
 		return guestTeamCount;
 	}
 	
