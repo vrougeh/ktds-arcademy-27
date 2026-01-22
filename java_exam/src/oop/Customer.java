@@ -9,16 +9,27 @@ public class Customer {
 	int shoppingCartWeight;
 	int maxProductWeight;
 	
+	
+	public Customer(int maxProductWeight , int wallet) {
+		this.maxProductWeight = maxProductWeight;
+		this.wallet = wallet;
+	}
+	
 	public void buy(int num) {
-		if(maxProductWeight < productWeight * num) {
+		if(maxProductWeight <= setShoppingCartWeight(num)) {
 			System.out.println("더이상 장바구니를 들 수 없습니다.");
 		}else if(wallet < productPrice * num) {
 			System.out.println("돈이 부족합니다.");
 		}else {
-			shoppingCartWeight = productWeight * num;
+			setShoppingCartWeight(num);
 			products += num;
 			wallet -= productPrice*num;
 		}
+	}
+	
+	public int setShoppingCartWeight(int num) {
+		
+		return	shoppingCartWeight += productWeight * num;
 	}
 
 }

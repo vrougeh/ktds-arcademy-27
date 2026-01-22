@@ -29,8 +29,20 @@ public class Car {
 	 */
 	int speed;
 	
-	// 클래스의 기능 (인스턴스 메소드)
 	
+	
+	
+	/** 
+	 * 자동차 모델명
+	 */
+	String name;
+	
+	public Car(String name) {
+		this.name = name;
+	}
+	
+	
+	// 클래스의 기능 (인스턴스 메소드)
 	/**
 	 * <pre>
 	 * 현재 엔진의 상태에 따라 시동을 키거나 끈다

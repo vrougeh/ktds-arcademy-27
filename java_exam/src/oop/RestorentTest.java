@@ -12,7 +12,7 @@ public class RestorentTest {
 	
 	public static void main(String[] args) {
 		
-		Restorent test = new Restorent();
+		Restorent test = new Restorent(20,9000);
 		
 		// 줄서있는 손님의 팀을 세팅
 		test.setGuestTeamCount(25);

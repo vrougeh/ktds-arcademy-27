@@ -7,11 +7,18 @@ public class Restorent {
 	//TODO 4인 1table 구현
 	int guestCount;
 	int guestTeamCount;
-	int totalTableCount = 20;
+	int totalTableCount;
 	int tableNumber;
 	boolean[] table = new boolean[totalTableCount];
-	int cost = 9000;
+	int cost;
 	int totalCost;
+	
+	
+	public Restorent(int totalTableCount, int cost) {
+		this.totalTableCount = totalTableCount;
+		this.cost = cost;
+		
+	}
 	
 	
 	/**

@@ -6,6 +6,10 @@ public class Seller {
 	int products;
 	int wallet;
 	
+	public Seller(int products) {
+		this.products = products;
+	}
+	
 	public void sell(int num) {
 		if(products <= num) {
 			num = products;
@@ -17,5 +21,4 @@ public class Seller {
 		}
 		if(products == 0) System.out.println("품절되었습니다.");
 	}
-
 }

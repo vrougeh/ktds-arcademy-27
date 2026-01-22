@@ -4,7 +4,7 @@ public class CarTest {
 	
 	public static void main(String[] args) {
 		
-		Car kona = new Car(); // 기본값 할당됨
+		Car kona = new Car("kona"); // 기본값 할당됨
 		System.out.println(kona);
 		kona.pressEngineStartButton();
 		kona.pressGasolinPedal(90);
@@ -18,7 +18,7 @@ public class CarTest {
 		System.out.println("kona speed : " + konaSpeed);
 		
 		
-		Car carnival = new Car();
+		Car carnival = new Car("carnival");
 		System.out.println(carnival);
 		
 		carnival.pressGasolinPedal(60);
