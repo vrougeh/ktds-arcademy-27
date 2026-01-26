@@ -9,12 +9,14 @@ public class Restaurant {
     int restorentFull;
     double restorentAlchole;
     int restorentMoney;
+    Menu[] menu;
 
-    public Restaurant(String name, int restorentFull, double restorentAlchole, int restorentMoney) {
+    public Restaurant(String name, int restorentFull, double restorentAlchole, int restorentMoney, Menu[] menu) {
         this.name = name;
         this.restorentFull = restorentFull;
         this.restorentAlchole = restorentAlchole;
         this.restorentMoney = restorentMoney;
+        this.menu = menu;
     }
 
     public int getFull() {
@@ -30,11 +32,15 @@ public class Restaurant {
         return this.name;
     }
     
-    public void printInformation(Menu[] menus) {
+    public void printInformation() {
     	System.out.println(getName()+"상태 확인");
     	System.out.println("Menu ========");
-    	for(int i = 0; i < menus.length ; i++) {
-    		System.out.println(i+1+ ". " + menus[i].name + " / " + menus[i].price + "원 / " + menus[i].alchole + "% / " + menus[i].full + "g / " + menus[i].menuCount + "개");    		
+    	for(int i = 0; i < this.menu.length ; i++) {
+    		if(this.menu[i].full == 0) {
+    			System.out.println(i+1+ ". " + this.menu[i].name + " / " + this.menu[i].price + "원 / " + this.menu[i].alchole + "% / " + this.menu[i].menuCount + "개");    		
+    		}else {
+    			System.out.println(i+1+ ". " + this.menu[i].name + " / " + this.menu[i].price + "원 / " + this.menu[i].full + "g / " + this.menu[i].menuCount + "개");    		
+    		}
     	}
     	System.out.println("매출금 : " + this.restorentMoney);
     }

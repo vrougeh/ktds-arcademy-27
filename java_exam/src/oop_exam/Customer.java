@@ -22,6 +22,7 @@ public class Customer {
     boolean isFull;
     boolean isAlchole;
     boolean isMoney;
+    boolean isEqual;
 
 
     public Customer(String name, int full, double alchole, int money) {
@@ -32,11 +33,11 @@ public class Customer {
     }
     
     public String getName() {
-    	return name;
+    	return this.name;
     }
 
     public int getFull() {
-        return full;
+        return this.full;
     }
     public void setFull(int restaurantFull ,int menuFull) {
     	int nowFull = getFull() + menuFull;
@@ -49,7 +50,7 @@ public class Customer {
     }
 
     public double getAlchole() {
-        return alchole;
+        return this.alchole;
     }
     public void setAlchole(double restaurantAlchole,double menuAlchole) {
     	double nowAlchole = getAlchole() + menuAlchole;
@@ -62,43 +63,53 @@ public class Customer {
     }
 
     public int getMoney() {
-        return money;
+        return this.money;
     }
     public void setMoney(Restaurant restaurant, int menuMoney) {
     	int nowMoney = getMoney() - menuMoney;
     	if(nowMoney <= 0) {
-    		isMoney = true;
+    		this.isMoney = true;
     	}else {
-    		isMoney = false;
+    		this.isMoney = false;
     		this.money -= menuMoney;
     		restaurant.restorentMoney += menuMoney;
     	}
     }
-
+    
+    
     public void order(Restaurant restaurant,Menu menu) {
-    	
-    	setFull(restaurant.getFull() ,menu.getFull());
-    	setAlchole(restaurant.getAlchole(),menu.getAlchole());
-    	setMoney(restaurant,menu.getPrice());
-    	
-    	System.out.println("고객명 : " + getName());
-    	System.out.println(getName() + "의 취함 정도 : " + getAlchole());
-    	System.out.println(getName() + "의 배부름 정도 : " + getFull());
-    	System.out.println(getName() + "의 소지금 : " + getMoney());
-    	System.out.println("주문금액: " + menu.getPrice());
-    	System.out.println("식당의 배부름 기준 " + restaurant.getFull());
-    	
-    	
-    	
-    	if(this.isFull) {
-    		System.out.println("주문 실패 - 너무 배부름");    		
-    	}else if(this.isAlchole) {
-    		System.out.println("주문 실패 - 너무 취함");    		
-    	}else if(this.isMoney) {
-    		System.out.println(this.name + "의 소지금 부족");    		
+    	this.isEqual = false;
+    	for(int i = 0 ; i < restaurant.menu.length ; i++) {
+    		if(restaurant.menu[i] == menu) {
+    			this.isEqual = true;
+    			break;
+    		}
+    	}
+    	if(isEqual) {
+	    	setFull(restaurant.getFull() ,menu.getFull());
+	    	setAlchole(restaurant.getAlchole(),menu.getAlchole());
+	    	setMoney(restaurant,menu.getPrice());
+	    	
+	    	System.out.println("고객명 : " + this.name);
+	    	System.out.println(this.name + "의 취함 정도 : " + this.alchole);
+	    	System.out.println(this.name + "의 배부름 정도 : " + this.full);
+	    	System.out.println(this.name + "의 소지금 : " + this.money);
+	    	System.out.println("주문금액: " + menu.getPrice());
+	    	System.out.println("식당의 배부름 기준 " + restaurant.getFull());
+	    	
+	    	
+	    	if(this.isFull) {
+	    		System.out.println("주문 실패 - 너무 배부름");    		
+	    	}else if(this.isAlchole) {
+	    		System.out.println("주문 실패 - 너무 취함");    		
+	    	}else if(this.isMoney) {
+	    		System.out.println(this.name + "의 소지금 부족");    		
+	    	}else {
+	    		menu.menuCount -= 1;
+	    		System.out.println("주문성공");    		
+	    	}
     	}else {
-    		menu.menuCount -= 1;
-    		System.out.println("주문성공");    		
+    		System.out.println("해당 메뉴는 해당 식당에 없습니다.");
     	}
     	System.out.println();
     }

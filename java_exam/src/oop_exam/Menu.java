@@ -7,19 +7,24 @@ package oop_exam;
  * 레스토랑명 메뉴 이름 가격 포만감 알코올도수
  */
 public class Menu {
-	Restaurant restaurant;
+	//Restaurant restaurant;
     String name;
     int price;
     int full;
     double alchole;
     int menuCount;
 
-    Menu(Restaurant restaurant ,String name,int price,int full,double alchole,int count){
-    	this.restaurant = restaurant;
-        this.name=name;
+    Menu(/*Restaurant restaurant ,*/String name,int price,double alchole,int count){
+    	/*this.restaurant = restaurant;*/
+    	this.name=name;
         this.price=price;
-        this.full=full;
         this.alchole=alchole;
+        this.menuCount = count;
+    }
+    Menu(/*Restaurant restaurant ,*/String name,int price,int full,int count){
+    	this.name=name;
+        this.price=price;
+    	this.full=full;
         this.menuCount = count;
     }
     

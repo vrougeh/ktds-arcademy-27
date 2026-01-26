@@ -53,5 +53,4 @@ public class DrinksArray {
 		}
 		System.out.println();
 	}
-
 }
