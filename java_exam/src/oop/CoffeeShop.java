@@ -9,6 +9,14 @@ public class CoffeeShop {
 		this.hot = hot;
 	}
 	
+	public CoffeeShop() {
+		//this.hot = new Coffee("기본 아메리카노",1500,30);
+		//this.ice = new Coffee("아이스 아메리카노",1500,50);
+		
+		this(new Coffee("아이스 아메리카노",1500,50)
+			,new Coffee("기본 아메리카노",1500,30));
+	}
+	
 	
 	/**
 	 * 커피숍에서 커피 판매
@@ -27,6 +35,21 @@ public class CoffeeShop {
 			System.out.println("존재하지 않는 가격입니다.");
 			return 0;
 		}
+	}
+	
+	public int orderCoffee(int menu){
+		int price = this.orderCoffee(menu,1);
+		return price;
+	}
+	
+	/**
+	 * 가장 첫번째 메뉴를 한개 주문한다
+	 * @return
+	 */
+	public int orderCoffee() {
+		int price = this.orderCoffee(1);
+		return price;
+		
 	}
 	
 	

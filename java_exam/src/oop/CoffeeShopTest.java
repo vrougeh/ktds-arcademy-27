@@ -9,19 +9,36 @@ public class CoffeeShopTest {
 		Coffee tea = new Coffee("녹차",5000);
 		
 		
-		CoffeeShopArray starb = new CoffeeShopArray(iceCoffee, hotCoffee,tea);
+		CoffeeShopArray starbArr = new CoffeeShopArray(iceCoffee, hotCoffee,tea);
 		
-		int price = starb.orderCoffee(1,3);
-		System.out.println(price+"원");
-		
-		price = starb.orderCoffee(2, 6);
-		System.out.println(price+"원");
-		
-		price = starb.orderCoffee(0, 4);
-		System.out.println(price+"원");
+		CoffeeShop starb = new CoffeeShop(iceCoffee, hotCoffee);
+		CoffeeShop starb1 = new CoffeeShop();
 
-	
-		price = starb.orderCoffee(3, 4);
+		int price = starbArr.orderCoffee(1,3);
+		System.out.println(price+"원");
+		
+		price = starbArr.orderCoffee(2, 6);
+		System.out.println(price+"원");
+		
+		price = starbArr.orderCoffee(0, 4);
+		System.out.println(price+"원");
+		
+		price = starbArr.orderCoffee(3, 4);
+		System.out.println(price+"원");
+		
+		price = starb.orderCoffee(1);
+		System.out.println(price+"원");
+		
+		price = starb.orderCoffee(2);
+		System.out.println(price+"원");
+		
+		price = starb1.orderCoffee(1);
+		System.out.println(price+"원");
+		
+		price = starb1.orderCoffee(1,4);
+		System.out.println(price+"원");
+		
+		price = starb1.orderCoffee(2);
 		System.out.println(price+"원");
 	}
 
