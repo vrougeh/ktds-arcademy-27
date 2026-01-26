@@ -2,16 +2,13 @@ package com.ktdsuniversit.edu.exam.string;
 
 import java.util.Scanner;
 
-public class Q181847 {
+public class Q181876 {
 
 	public static void main(String[] args) {
 		Scanner scanner = new Scanner(System.in);
-		String n_str = scanner.nextLine();
+		String myString = scanner.nextLine();
 		
-		int num = Integer.parseInt(n_str);
-		
-		System.out.println(num);
-		
+		System.out.println(myString.toLowerCase());
 
 	}
 
