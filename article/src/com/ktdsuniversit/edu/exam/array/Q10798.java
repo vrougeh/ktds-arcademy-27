@@ -50,7 +50,6 @@ public class Q10798 {
 				System.out.print(matrix[j][i]);
 			}
 		}
-
 		
 //		System.out.print(matrix[0][1]);
 	}
