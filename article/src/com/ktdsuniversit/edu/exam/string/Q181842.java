@@ -12,9 +12,9 @@ public class Q181842 {
 		
 		
 		if(str2.contains(str1)) {
-			System.out.println("1");
+			System.out.println(1);
 		}else {
-			System.out.println("0");
+			System.out.println(0);
 		}
 	}
 
