@@ -6,23 +6,20 @@ public class Q11720 {
 	
 	public static void main(String[] args) {
 		Scanner scanner = new Scanner(System.in);
-		String num1 = scanner.nextLine();
+		int num1 = scanner.nextInt();
 		
 		String num2 = scanner.nextLine();
 		
 		String sum;
-		int realsum = 0;
-		if(num2.length()== Integer.parseInt(num1) ) {
-			for(int i = 0; i < Integer.parseInt(num1); i++) {
+		if(num1 == num2.length()) {
+			int realsum = 0;
+			for(int i = 0; i < num1; i++) {
 				sum = num2.charAt(i) + "";
 				
 				realsum += Integer.parseInt(sum);
 			}
 			System.out.println(realsum);
-		}else {
-			System.out.println("숫자의 크기가 맞지 않습니다.");
 		}
-
 	}
 
 }

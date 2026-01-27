@@ -15,9 +15,6 @@ public class Q2908 {
 		String num1 = splitStr[0];
 		String num2 = splitStr[1];
 		
-//		int num1 = Integer.parseInt(splitStr[0]);
-//		int num2 = Integer.parseInt(splitStr[1]);
-		
 //		System.out.println(num1);
 //		System.out.println(num2);
 		
