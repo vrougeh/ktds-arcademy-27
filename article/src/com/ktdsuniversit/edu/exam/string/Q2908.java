@@ -25,8 +25,8 @@ public class Q2908 {
 		String result2 = "";
 		
 		for(int i = 0 ; i < 3 ; i++) {
-			result1 += num1.charAt(2-i)+ "";
-			result2 += num2.charAt(2-i)+ "";
+			result1 += num1.charAt(2-i);
+			result2 += num2.charAt(2-i);
 		}
 //		System.out.println(result1);
 //		System.out.println(result2);
