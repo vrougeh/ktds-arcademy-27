@@ -37,6 +37,12 @@ public class Store {
 	private int store;
 	private int money;
 	private int money2;
+	
+	public Store(int store) {
+		this.store = store;
+		this.money = 0;
+		this.money2 =0;
+	}
 
 	public Store(int store, int money, int money2) {
 		this.store = store;

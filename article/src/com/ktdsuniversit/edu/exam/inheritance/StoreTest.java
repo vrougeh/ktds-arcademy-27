@@ -9,6 +9,12 @@ public class StoreTest {
 		// 4. 리턴값
 		
 		//0 : 일반마트 1 : 편의점 3 : 백화점
+		
+		Store store0 = new Store(0, 0, 0);
+		
+		
+		store0.order();
+		
 	}
 
 }
