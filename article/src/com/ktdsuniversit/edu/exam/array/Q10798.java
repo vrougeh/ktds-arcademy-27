@@ -2,7 +2,7 @@ package com.ktdsuniversit.edu.exam.array;
 
 import java.util.Scanner;
 
-
+//https://www.acmicpc.net/problem/10798 
 // TODO 좀더 구상 필요
 public class Q10798 {
 	public static void main(String[] args) {
