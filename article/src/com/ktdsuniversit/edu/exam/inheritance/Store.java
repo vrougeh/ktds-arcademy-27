@@ -27,19 +27,21 @@ package com.ktdsuniversit.edu.exam.inheritance;
  * 
  */
 //규모를 기준으로 일반마트 - 편의점 - 백화점으로 구분
+//기본파일 - store
+
 //일반마트 - 거스름돈 기능
 //편의점 extends 일반바트 - 상품금액의 0.1% 포인트지급기능, 100포인트 넘으면 전액사용(상품금액이 포인트보다 작아도)
 //백화점 extends 편의점  - 포인트지급 기능 가져와서 조건에 맞게 수정
 
-class Store {
-    protected String storeName;
+public class Store {
+	protected String storeName;
 
-    public Store(String storeName) {
-        this.storeName = storeName;
-    }
+	public Store(String storeName) {
+		this.storeName = storeName;
+	}
 
-    // 오버라이딩을 위한 기본 메서드 정의
-    public int sell(Customer customer, int price, int moneyPaid) {
-        return moneyPaid; 
-    }
+	// 오버라이딩을 위한 기본 메서드 정의
+	public int sell(Customer customer, int price, int moneyPaid) {
+		return moneyPaid; 
+	}
 }
