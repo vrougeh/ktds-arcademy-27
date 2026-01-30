@@ -25,7 +25,9 @@ public class ConvenienceStore extends Mart {
 		
 		// 실 결제 금액 계산
 		int finalPrice = price - usePoint;
-		if (finalPrice < 0) finalPrice = 0;
+		if (finalPrice < 0) {
+			finalPrice = 0;
+		}
 		
 		// 지불 확인
 		if (moneyPaid < finalPrice) {
