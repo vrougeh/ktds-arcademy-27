@@ -49,13 +49,11 @@ public class RestaurantTest {
 	/**
      * [주문 수행 메서드]
      * 반복되는 try-catch 블록을 하나로 모아 관리합니다.
-     * 강의 진도상 '메서드'를 배웠으므로 이렇게 분리하는 것이 '잘 짠 코드'입니다.
      */
 	public static void safeOrder(Customer customer, Restaurant restaurant, Menu[] menuList, int index) {
 		try {
 			// 1. 배열 인덱스 검사 (가장 먼저 해야 함)
 			if (index < 0 || index >= menuList.length) {
-				// 여기서 던지면 아래 catch(ArrayIndex...)에서 잡습니다.
 				throw new ArrayIndexOutOfBoundsException("존재하지 않는 메뉴 번호입니다: " + index);
 			}
 
@@ -68,7 +66,7 @@ public class RestaurantTest {
 		} catch (ArrayIndexOutOfBoundsException e) { // 배열 에러
 			System.out.println("[시스템 오류] " + e.getMessage());
 			
-		} catch (IllegalArgumentException e) { // res != menu 일때
+		} catch (IllegalArgumentException e) { // restaurant에 menu가 없을때
 			System.out.println("[잘못된 요청] " + e.getMessage());
 			
 		} catch (FullException | DrunkenException | InsufficientBalanceException | SoldOutException e) { 
