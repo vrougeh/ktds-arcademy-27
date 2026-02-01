@@ -24,8 +24,6 @@ public class RestaurantTest {
 		Customer customer1 = new Customer("손님1", 0, 0, 30000);
 		
 		System.out.println("============== 영업 시작 ==============");
-
-		// [핵심] try-catch 덩어리를 없애고, 안전한 주문 메서드를 호출합니다.
 		
 		// 1. 정상 주문들
 		safeOrder(customer1, VIPS, menus, 4);
