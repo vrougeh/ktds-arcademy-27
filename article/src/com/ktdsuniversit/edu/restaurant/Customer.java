@@ -1,5 +1,7 @@
 package com.ktdsuniversit.edu.restaurant;
 
+import com.ktdsuniversit.edu.restaurant.exceptions.*;
+
 /**
  * <pre>
  * 손님을 정의한다
@@ -13,106 +15,82 @@ package com.ktdsuniversit.edu.restaurant;
  * </pre>
  */
 public class Customer {
-    String name;
-    int full;
-    double alchole;
-    int money;
-    
-    boolean isFull;
-    boolean isAlchole;
-    boolean isMoney;
-    boolean isEqual;
-
-
-    public Customer(String name, int full, double alchole, int money) {
-        this.name = name;
-        this.full = full;
-        this.alchole = alchole;
-        this.money = money;
-    }
-    
-    public String getName() {
-    	return this.name;
-    }
-
-    public int getFull() {
-        return this.full;
-    }
-    public void setFull(int restaurantFull ,int menuFull) {
-    	int nowFull = getFull() + menuFull;
-    	if(nowFull > restaurantFull) {
-    		this.isFull =true;
-    	}else {
-    		this.full += menuFull;
-    		this.isFull = false;
-    	}
-    }
-
-    public double getAlchole() {
-        return this.alchole;
-    }
-    public void setAlchole(double restaurantAlchole,double menuAlchole) {
-    	double nowAlchole = getAlchole() + menuAlchole;
-    	if(nowAlchole > restaurantAlchole) {
-    		this.isAlchole = true;
-    	}else {
-    		this.alchole += menuAlchole;
-    		this.isAlchole = false;
-    	}
-    }
-
-    public int getMoney() {
-        return this.money;
-    }
-    public void setMoney(Restaurant restaurant, int menuMoney) {
-    	int nowMoney = getMoney() - menuMoney;
-    	if(nowMoney <= 0) {
-    		this.isMoney = true;
-    	}else {
-    		this.isMoney = false;
-    		this.money -= menuMoney;
-    		restaurant.setMoney(menuMoney);
-    	}
-    }
-    
-    //TODO 인자중 menu 를 int menuNumber 로 변경하기
-    // 해당 배열에 숫자를 넣었을 때 값이 있는지 확인하는 로직 필요
-    public void order(Restaurant restaurant,Menu menu) {
-    	this.isEqual = false;
-    	
-    	for(int i = 0 ; i < restaurant.getMenu().length ; i++) {
-    		if(restaurant.getMenu()[i] == menu) {
-    			this.isEqual = true;
-    			break;
-    		}
-    	}
-    	if(isEqual) {
-	    	setFull(restaurant.getFull() ,menu.getFull());
-	    	setAlchole(restaurant.getAlchole(),menu.getAlchole());
-	    	setMoney(restaurant,menu.getPrice());
-	    	
-	    	System.out.println("고객명 : " + this.name);
-	    	System.out.println(this.name + "의 취함 정도 : " + this.alchole);
-	    	System.out.println(this.name + "의 배부름 정도 : " + this.full);
-	    	System.out.println(this.name + "의 소지금 : " + this.money);
-	    	System.out.println("주문금액: " + menu.getPrice());
-	    	System.out.println("식당의 배부름 기준 " + restaurant.getFull());
-	    	
-	    	
-	    	if(this.isFull) {
-	    		System.out.println("주문 실패 - 너무 배부름");    		
-	    	}else if(this.isAlchole) {
-	    		System.out.println("주문 실패 - 너무 취함");    		
-	    	}else if(this.isMoney) {
-	    		System.out.println(this.name + "의 소지금 부족");    		
-	    	}else {
-	    		menu.setMenuCount(1);
-	    		System.out.println("주문성공");    		
-	    	}
-    	}else {
-    		System.out.println("해당 메뉴는 해당 식당에 없습니다.");
-    	}
-    	System.out.println();
-    }
-
+	String name;
+	int full;
+	double alchole;
+	int money;
+	
+	public Customer(String name, int full, double alchole, int money) {
+		this.name = name;
+		this.full = full;
+		this.alchole = alchole;
+		this.money = money;
+	}
+	
+	public String getName() {
+		return this.name;
+	}
+	public int getFull() {
+		return this.full;
+	}
+	public double getAlchole() {
+		return this.alchole;
+	}
+	public int getMoney() {
+		return this.money;
+	}
+	
+	/**
+	 * 주문 로직
+	 */
+	public void order(Restaurant restaurant, Menu menu) 
+			throws FullException, DrunkenException, InsufficientBalanceException, SoldOutException {
+		
+		// 1. 유효성 검사
+		if (restaurant == null || menu == null) {
+			throw new NullPointerException("식당 혹은 메뉴가 존재하지 않습니다.");
+		}
+	
+		// 2. 메뉴판에 있는 메뉴인지 확인
+		boolean isEqual = false;
+		for (Menu m : restaurant.getMenu()) {
+			if (m != null && m.getName().equals(menu.getName())) {
+				isEqual = true;
+				break;
+			}
+		}
+		if (!isEqual) {
+			throw new IllegalArgumentException("해당 식당에 없는 메뉴입니다."); 
+		}
+	
+		// 3. 상황별 예외 체크
+		menu.decreaseStock(); // 재고 부족 (SoldOutException)
+		
+		if (this.full + menu.getFull() > restaurant.getFull()) {
+		    throw new FullException("배가 너무 부릅니다.");
+		}
+		
+		if (this.alchole + menu.getAlchole() > restaurant.getAlchole()) {
+		    throw new DrunkenException("너무 취했습니다.");
+		}
+		
+		if (this.money < menu.getPrice()) {
+		    throw new InsufficientBalanceException("잔액이 부족합니다.");
+		}
+		
+		// 4. 모든 예외를 통과했으므로 정상 처리
+		this.full += menu.getFull();
+		this.alchole += menu.getAlchole();
+		this.money -= menu.getPrice();
+		restaurant.setMoney(menu.getPrice());
+		
+		System.out.println("고객명 : " + this.name);
+		System.out.println(this.name + "의 취함 정도 : " + this.alchole);
+		System.out.println(this.name + "의 배부름 정도 : " + this.full);
+		System.out.println(this.name + "의 소지금 : " + this.money);
+		System.out.println("주문금액: " + menu.getPrice());
+		System.out.println("식당의 취함 기준 " + restaurant.getAlchole());
+		System.out.println("식당의 배부름 기준 " + restaurant.getFull());
+		System.out.println(">> 주문 성공");
+	}
 }
