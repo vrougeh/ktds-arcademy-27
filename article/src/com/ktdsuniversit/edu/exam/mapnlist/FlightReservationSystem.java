@@ -72,7 +72,7 @@ import java.util.Scanner;
 목적지를 입력하면 비행기 편을 예약할 수 있습니다.
 목적지를 입력하세요: 다낭
 
-배열 X
+배열 X	
 
 //Map, List를 이용해 비행기 좌석 예매 시스템을 만드세요.
 좌석 - 비행기편 - 목적지
@@ -90,11 +90,11 @@ public class FlightReservationSystem {
 		Map<String, List<Flight>> flightMap = new HashMap<>();
 		
 		// 변수 선언
-		String destInput;
+		String destInput; // 입력한 목적지
 		List<Flight> flightListForDest; // 해당 목적지의 비행기 리스트
-		String flightName;
-		Flight selectedFlight;
-		List<FlightSeet> seats;
+		String flightName;  // 비행기 편명
+		Flight selectedFlight; // 선택된 비행기
+		List<FlightSeet> seats; // 좌석
 		
 		//1. 데이터 초기화
 		initializeFlightData(flightMap);
@@ -179,20 +179,9 @@ public class FlightReservationSystem {
 			//해당 목적지의 비행기 리스트 가져오기
 			List<Flight> flights = flightMap.get(dest);
 			
-			//편명 순 정렬
-			Collections.sort(flights, new Comparator<Flight>() {
-				@Override
-				public int compare(Flight f1, Flight f2) {
-					return f1.getName().compareTo(f2.getName());
-				}
-			});
-			
-			System.out.println("[" + dest + "행]");
-			int count = 0;
+			System.out.println("[" + dest + " 행]");
 			for (Flight f : flights) {
-				System.out.printf("  %s편(잔여:%d)", f.getName(), f.getAvailableSeatCount());
-				count++;
-				if (count % 4 == 0) System.out.println();
+				System.out.printf("  %s편 (잔여:%d)", f.getName(), f.getAvailableSeatCount());
 			}
 			System.out.println("\n");
 		}
@@ -204,7 +193,7 @@ public class FlightReservationSystem {
 		String[] destinations = {"미국", "중국", "일본", "독일", "프랑스", "이탈리아", "부산", "제주", "다낭", "방콕"};
 		Random random = new Random();
 		
-		//100개의 비행기 편 생성
+		//30개의 비행기 편 생성
 		for (int i = 1; i <= 30; i++) {
 			String flightName = String.format("%04d", i);
 			String dest = destinations[random.nextInt(destinations.length)];
@@ -221,9 +210,11 @@ public class FlightReservationSystem {
 		
 		//테스트용 만석 비행기 (부산행 리스트에 추가)
 		List<FlightSeet> fullSeats = new ArrayList<>();
-		for(int k=1; k<=9; k++) fullSeats.add(new FlightSeet(k, "X"));
+		for(int i=1; i<=9; i++) {
+			fullSeats.add(new FlightSeet(i, "X"));
+		}
 		
-		//부산 키가 없으면 생성 (혹시 모를 안전장치)
+		//부산 키가 없으면 생성
 		if (!flightMap.containsKey("부산")) {
 			flightMap.put("부산", new ArrayList<>());
 		}
