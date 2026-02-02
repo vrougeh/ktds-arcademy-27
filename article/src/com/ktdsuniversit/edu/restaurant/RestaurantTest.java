@@ -1,24 +1,38 @@
 package com.ktdsuniversit.edu.restaurant;
 
+import java.util.ArrayList;
+import java.util.List;
+
 import com.ktdsuniversit.edu.restaurant.exceptions.*;
 
 
 public class RestaurantTest {
 	public static void main(String[] args) {
-		Menu[] menus = {
-				new Menu("메뉴 1", 5000, 50, 200),
-				new Menu("메뉴 2", 10000, 100, 200),
-				new Menu("메뉴 3", 8000, 80, 200),
-				new Menu("메뉴 4", 4000, 6.0, 200),
-				new Menu("메뉴 5", 6000, 19.0, 200)
-		};
-		Menu[] menus2 = {
-				new Menu("메뉴", 0, 50, 200),
-				new Menu("메뉴", 0, 100, 200),
-				new Menu("메뉴", 0, 80, 200),
-				new Menu("메뉴", 0, 6.0, 200),
-				new Menu("메뉴", 0, 19.0, 200)
-		};
+		List<Menu> menus = new ArrayList<>();
+		menus.add(new Menu("메뉴 1", 5000, 50, 200));
+		menus.add(new Menu("메뉴 2", 10000, 100, 200));
+		menus.add(new Menu("메뉴 3", 8000, 80, 200));
+		menus.add(new Menu("메뉴 4", 4000, 6.0, 200));
+		menus.add(new Menu("메뉴 5", 6000, 19.0, 200));
+		
+		
+		List<Menu> menus2 = new ArrayList<>();
+		menus2.add(new Menu("메뉴", 0, 50, 200));
+		menus2.add(new Menu("메뉴", 0, 100, 200));
+		menus2.add(new Menu("메뉴", 0, 80, 200));
+		menus2.add(new Menu("메뉴", 0, 6.0, 200));
+		menus2.add(new Menu("메뉴", 0, 19.0, 200));
+		
+		
+//		Menu[] menus2 = {
+//				new Menu("메뉴", 0, 50, 200),
+//				new Menu("메뉴", 0, 100, 200),
+//				new Menu("메뉴", 0, 80, 200),
+//				new Menu("메뉴", 0, 6.0, 200),
+//				new Menu("메뉴", 0, 19.0, 200)
+//		};
+		
+		
 		
 		Restaurant VIPS = new Restaurant("VIPS", 190, 19, 0, menus);
 		Customer customer1 = new Customer("손님1", 0, 0, 30000);
@@ -50,15 +64,15 @@ public class RestaurantTest {
      * [주문 수행 메서드]
      * 반복되는 try-catch 블록을 하나로 모아 관리합니다.
      */
-	public static void safeOrder(Customer customer, Restaurant restaurant, Menu[] menuList, int index) {
+	public static void safeOrder(Customer customer, Restaurant restaurant, List<Menu> menus, int index) {
 		try {
-			// 1. 배열 인덱스 검사 (가장 먼저 해야 함)
-			if (index < 0 || index >= menuList.length) {
+			// 1. 배열 인덱스 검사 (가장 먼저 해야 함) 없어도 아래 메뉴꺼내기에서 에러가 터짐 그러나 내가 원하는 방식으로 출력원하고자하면 살릴것
+			if (index < 0 || index >= menus.size()) {
 				throw new ArrayIndexOutOfBoundsException("존재하지 않는 메뉴 번호입니다: " + index);
 			}
 
 			// 2. 메뉴 꺼내기
-			Menu selectedMenu = menuList[index];
+			Menu selectedMenu = menus.get(index);
 
 			// 3. 주문 시도 (Customer.order에서 각종 예외 발생 가능)
 			customer.order(restaurant, selectedMenu);
@@ -75,7 +89,7 @@ public class RestaurantTest {
 		} catch (NullPointerException e) {
 			System.out.println("[데이터 오류] 정보가 비어있습니다.");
 			
-		} catch (Exception e) {
+		} catch (Exception e) { // 해당코드 있는경우 앞으로 생길 문제점을 찾지 못할 수 있음 그냥 빼고 터지게 둔 다음 찾는 것이 좋음
 			// 그 외 예상 못한 모든 에러 처리
 			System.out.println("[알 수 없는 에러] " + e.getMessage());
 		}

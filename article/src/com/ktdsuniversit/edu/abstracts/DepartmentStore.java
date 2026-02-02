@@ -7,6 +7,7 @@ package com.ktdsuniversit.edu.abstracts;
 고객의 등급이 VVIP인 경우 10% 할인 혜택을 제공받고 3%의 포인트를 지급 받습니다.
 고객의 포인트가 10000점이 넘어갈 경우, 현금처럼 사용할 수 있습니다.
  */
+//TODO 코드 완성하기 givePoint 에 있는 if 문사용하면 편할 듯
 public class DepartmentStore extends AbstractMart{
 
 	public DepartmentStore(int productPrice) {
