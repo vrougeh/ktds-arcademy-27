@@ -1,45 +1,42 @@
 package com.ktdsuniversit.edu.exam.mapnlist;
 
-import java.util.Arrays;
+import java.util.List;
 
 public class Flight {
 	
-	String name;
-	int number;
-	int[] seet;
+	private String name;		// 비행기 편명 (예: 0001)
+	private String destination;	// 목적지 추가를 위해 선언함
+	private List<FlightSeet> seet;
 	
-	
+	public Flight(String name, String destination, List<FlightSeet> seet) {
+		this.name = name;
+		this.destination = destination;
+		this.seet = seet;
+	}
+
 	public String getName() {
-		return this.name;
+		return name;
 	}
-	public void setName(String name) {
-		this.name = name;
+	public String getDestination() {
+		return destination;
 	}
-	public int getNumber() {
-		return this.number;
-	}
-	public void setNumber(int number) {
-		this.number = number;
-	}
-	public int[] getSeet() {
-		return this.seet;
-	}
-	public void setSeet(int[] seet) {
-		this.seet = seet;
+	public List<FlightSeet> getSeet() {
+		return seet;
 	}
 	
-	public Flight(String name, int number, int[] seet) {
-		this.name = name;
-		this.number = number;
-		this.seet = seet;
+	// 예매 가능한 좌석 수 계산
+	public int getAvailableSeatCount() {
+		int count = 0;
+		for (FlightSeet s : this.seet) {
+			if ("O".equals(s.getSeetable())) {
+				count++;
+			}
+		}
+		return count;
 	}
+
 	@Override
 	public String toString() {
-		return "Flight [name=" + name + ", number=" + number + ", seet=" + Arrays.toString(seet) + "]";
+		return "Flight [name=" + name + ", destination=" + destination + ", seet=" + seet + "]";
 	}
-	
-	
-	
-	
-
 }
