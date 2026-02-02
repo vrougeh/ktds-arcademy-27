@@ -11,13 +11,13 @@ public class FlightSeet {
 	}
 	
 	public int getNumber() {
-		return number;
+		return this.number;
 	}
 	public void setNumber(int number) {
 		this.number = number;
 	}
 	public String getSeetable() {
-		return seetable;
+		return this.seetable;
 	}
 	public void setSeetable(String seetable) {
 		this.seetable = seetable;

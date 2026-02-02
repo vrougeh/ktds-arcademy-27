@@ -13,14 +13,14 @@ public class Flight {
 	}
 
 	public String getName() {
-		return name;
+		return this.name;
 	}
 
 	public List<FlightSeet> getSeet() {
-		return seet;
+		return this.seet;
 	}
 	
-	public int getAvailableSeatCount() {
+	public int getAvailableSeatCount() {  // 잔여 좌석수 세기
 		int count = 0;
 		for (FlightSeet s : this.seet) {
 			if ("O".equals(s.getSeetable())) {
