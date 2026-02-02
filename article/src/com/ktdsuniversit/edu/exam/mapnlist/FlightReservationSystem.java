@@ -164,7 +164,7 @@ public class FlightReservationSystem {
 		}
 	}
 	
-	// --- Helper Methods ---
+	// --- Methods ---
 	
 	//전체 비행기 리스트 출력 메소드 (Map<String, List<Flight>>)
 	public static void printAllFlights(Map<String, List<Flight>> flightMap) {
