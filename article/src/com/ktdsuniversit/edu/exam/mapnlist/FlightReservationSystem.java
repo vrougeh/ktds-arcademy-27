@@ -183,8 +183,11 @@ public class FlightReservationSystem {
 			List<Flight> flights = flightMap.get(dest);
 			
 			System.out.println("[" + dest + " 행]");
-			for (Flight f : flights) {
-				System.out.printf("  %s편 (잔여:%d)", f.getName(), f.getAvailableSeatCount());
+			for (int i = 0 ; i < flights.size() ; i++) {
+				System.out.printf("  %s편 (잔여:%d)", flights.get(i).getName(), flights.get(i).getAvailableSeatCount());
+				if ((i+1) % 4 == 0) {
+					System.out.println();
+				}
 			}
 			System.out.println("\n");
 		}
