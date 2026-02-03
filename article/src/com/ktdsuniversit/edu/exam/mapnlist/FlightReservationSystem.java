@@ -2,7 +2,6 @@ package com.ktdsuniversit.edu.exam.mapnlist;
 
 import java.util.ArrayList;
 import java.util.Collections;
-import java.util.Comparator;
 import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
@@ -108,7 +107,10 @@ public class FlightReservationSystem {
 			
 			destInput = scanner.nextLine().trim();
 			
-			
+			if(destInput == "exit") {
+				System.out.println("프로그램을 종료합니다.");
+				break;
+			}
 			if (!flightMap.containsKey(destInput)) {
 				System.out.println("\"" + destInput + "\"행 비행기 편은 존재하지 않습니다.\n");
 				continue;
@@ -129,6 +131,7 @@ public class FlightReservationSystem {
 				System.out.print("비행기 편을 입력하세요: ");
 				flightName = scanner.nextLine().trim();
 				if(flightName == "exit") {
+					System.out.println("이전으로 돌아갑니다.");
 					break;
 				}
 				//리스트 안에서 입력한 편명의 비행기를 찾아야 함
