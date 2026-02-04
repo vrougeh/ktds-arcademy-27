@@ -40,6 +40,13 @@ public class CoffeeShopTest {
 		
 		price = starb1.orderCoffee(2);
 		System.out.println(price+"원");
+		
+		
+		
+		price = starb1.orderCoffee2(Item.HOT, 3);
+		System.out.println(price+"원");
+		price = starb1.orderCoffee2(Item.ICE, 2);
+		System.out.println(price+"원");
 	}
 
 }

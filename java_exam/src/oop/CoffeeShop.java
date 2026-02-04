@@ -37,6 +37,20 @@ public class CoffeeShop {
 		}
 	}
 	
+	public int orderCoffee2(Item menu, int quantity) {
+		if(menu == Item.HOT) {
+			System.out.println(this.hot.name + " 음료를 "+ quantity +"개 주문 받았습니다.");
+			return this.hot.price * quantity;	
+		}else if(menu == Item.ICE) {
+			System.out.println(this.ice.name + " 음료를 "+ quantity +"개 주문 받았습니다.");
+			return this.ice.price * quantity;
+		}else {
+			System.out.println("존재하지 않는 가격입니다.");
+			return 0;
+		}
+	}
+	
+	
 	public int orderCoffee(int menu){
 		int price = this.orderCoffee(menu,1);
 		return price;
