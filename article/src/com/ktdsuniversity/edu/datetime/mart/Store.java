@@ -13,6 +13,8 @@ public class Store {
 	
 	public void add(Item item) {
 		//추가
+		item.getName();
+		item.getExpireDate();
 	}
 	
 	public void sell(int index) {
@@ -28,6 +30,14 @@ public class Store {
 		 * "소비기한이 지나 판매하지 않습니다"를 출력
 		 * 
 		 */
+		
+//		if(index == LocalTime.now().toString().compareTo()){
+//			
+//		}
+		for(Item item : items) {
+			
+			
+		}
 		
 	}
 

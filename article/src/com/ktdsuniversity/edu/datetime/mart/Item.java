@@ -8,7 +8,9 @@ public class Item {
 	private LocalDate expireDate;
 	
 	//생성자
-	public Item() {
+	public Item(String name , LocalDate expirDate) {
+		this.name = name;
+		this.expireDate = expirDate;
 	}
 	
 	
