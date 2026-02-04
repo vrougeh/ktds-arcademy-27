@@ -1,0 +1,32 @@
+package com.ktdsuniversity.edu.exam.mapnlist;
+
+public class FlightSeet {
+	
+	private int number; // 좌석 번호 (1~9)
+	//TODO 최적화 위해 boolean타입으로 변경하기 + Enum 으로 변경
+	private String seetable; // 좌석 상태 ("O": 가능, "X": 불가) 
+	
+	
+	public FlightSeet(int number, String seetable) {
+		this.number = number;
+		this.seetable = seetable;
+	}
+	
+	public int getNumber() {
+		return this.number;
+	}
+	public void setNumber(int number) {
+		this.number = number;
+	}
+	public String getSeetable() {
+		return this.seetable;
+	}
+	public void setSeetable(String seetable) {
+		this.seetable = seetable;
+	}
+
+	@Override
+	public String toString() {
+		return "FlightSeet [number=" + this.number + ", seetable=" + this.seetable + "]";
+	}
+}
