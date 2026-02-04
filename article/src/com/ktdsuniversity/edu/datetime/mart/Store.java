@@ -36,12 +36,12 @@ public class Store {
 		 * 
 		 */
 		// 인덱스 유효성 검사
-		if (index < 0 || index >= items.size()) {
+		if (index < 0 || index >= this.items.size()) {
 			System.out.println("해당 상품이 존재하지 않습니다.");
 			return;
 		}
 		
-		Item item = items.get(index);
+		Item item = this.items.get(index);
 		LocalDate today = LocalDate.now();
 		LocalDate expireDate = item.getExpireDate();
 		
