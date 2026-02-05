@@ -18,7 +18,7 @@ public class StoreTest {
 		mart.add(new Item("신선한 요플레", LocalDate.now().plusDays(2)));
 		
 		// 4. 여유 있는 상품 (일주일 뒤)
-		mart.add(new Item("통조림", LocalDate.now().plusWeeks(1)));
+		mart.add(new Item("통조림", LocalDate.now().plusMonths(14)));
 		
 		System.out.println("--- 판매 시작 ---");
 		mart.sell(0); // 상한 우유

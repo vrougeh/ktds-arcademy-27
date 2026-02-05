@@ -59,6 +59,5 @@ public class Store {
 				System.out.println(item.getName() + ": 판매 가능 (남은 기한: " + daysBetween + "일)");
 			}
 		}
-		
 	}
 }
