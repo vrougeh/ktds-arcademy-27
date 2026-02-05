@@ -3,6 +3,7 @@ package com.ktdsuniversity.edu.fp.basic.kakao;
 import java.time.LocalDate;
 import java.util.ArrayList;
 import java.util.List;
+import java.util.function.Predicate;
 
 public class FriendList {
 	
@@ -27,6 +28,15 @@ public class FriendList {
 //			tempBirthdate = tempBirthdate.withYear(LocalDate.now().getYear());
 			
 			if(search.check(f)) {
+				System.out.println(f);
+			}
+		}
+		System.out.println();
+	}
+	public void printSpecialFriends2(Predicate<Friend> predicate) {
+		LocalDate tempBirthdate = null;
+		for(Friend f : this.friends){
+			if(predicate.test(f)) {
 				System.out.println(f);
 			}
 		}
