@@ -13,46 +13,36 @@ public class Contact {
 	 * 연락처의 이름
 	 */
 	private String name;
-	
+
 	/**
 	 * 연락처 별명
 	 */
 	private String nickname;
-	
+
 	/**
 	 * 연락처 이메일
 	 */
 	private String email;
-	
+
 	/**
 	 * 이름
 	 */
 	private String firstName;
-	
+
 	/**
 	 * 성
 	 */
-	private String lsatName;
-	
+	private String lastName;
+
 	/**
-	 * 전화번호 목록
+	 * 전화번호
 	 */
-	private List<Phone> phones;
-	
-	/**
-	 * 회사 정보
-	 */
-	private Company company;
-	
+	private String phone;
+
 	/**
 	 * 메모
 	 */
 	private String memo;
-	
-	
-	public Contact() {
-		this.phones = new ArrayList<>();
-	}
 
 	public String getName() {
 		return this.name;
@@ -87,27 +77,19 @@ public class Contact {
 	}
 
 	public String getLastName() {
-		return this.lsatName;
+		return this.lastName;
 	}
 
-	public void setLsatName(String lsatName) {
-		this.lsatName = lsatName;
+	public void setLastName(String lastName) {
+		this.lastName = lastName;
 	}
 
-	public List<Phone> getPhones() {
-		return this.phones;
+	public String getPhone() {
+		return this.phone;
 	}
 
-	public void setPhones(List<Phone> phones) {
-		this.phones = phones;
-	}
-
-	public Company getCompany() {
-		return this.company;
-	}
-
-	public void setCompany(Company company) {
-		this.company = company;
+	public void setPhone(String phone) {
+		this.phone = phone;
 	}
 
 	public String getMemo() {
@@ -120,12 +102,9 @@ public class Contact {
 
 	@Override
 	public String toString() {
-		return "Contact " + name + ", nickname=" + nickname + ", email=" + email + ", firstName=" + firstName
-				+ ", lsatName=" + lsatName + ", phones=" + phones + ", company=" + company + ", memo=" + memo
-				+ ", getName()=" + getName() + ", getNickname()=" + getNickname() + ", getEmail()=" + getEmail()
-				+ ", getFirstName()=" + getFirstName() + ", getLastName()=" + getLastName() + ", getPhones()="
-				+ getPhones() + ", getCompany()=" + getCompany() + ", getMemo()=" + getMemo() + "]";
+		return "Contact [name=" + this.name + ", nickname=" + this.nickname + ", email=" + this.email + ", firstName="
+				+ this.firstName + ", lastName=" + this.lastName + ", phone=" + this.phone + ", memo=" + this.memo
+				+ "]";
 	}
-	
 
 }

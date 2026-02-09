@@ -52,14 +52,53 @@ public class ContactManager {
 	public void deleteContact(Predicate<Contact> predicate) {
 		this.contactList.removeIf(predicate);
 	}
-	
 	public static void main(String[] args) {
+		ContactManager cm = new ContactManager();
 		
-		ContactManager test = new ContactManager();
+		Contact newContact = new Contact();
+		newContact.setEmail("test@test.com");
+		newContact.setFirstName("asdf");
+		newContact.setLastName("as");
+		newContact.setName("asasas");
+		newContact.setMemo("Memo test");
+		newContact.setNickname("asas");
+		newContact.setPhone("010-2737-2604");
+		cm.addContact(newContact);
 		
-		test.addContact(new Contact());
-		test.printAllContacts();
+		newContact = new Contact();
+		newContact.setEmail("test2@test.com");
+		newContact.setFirstName("qwer");
+		newContact.setLastName("qwer");
+		newContact.setName("qwer");
+		newContact.setMemo("Memo2 test");
+		newContact.setNickname("qwer");
+		newContact.setPhone("010-1234-2604");
+		cm.addContact(newContact);
 		
+		newContact = new Contact();
+		newContact.setEmail("test3@test.com");
+		newContact.setFirstName("zxcv");
+		newContact.setLastName("zxcv");
+		newContact.setName("zxcvzxcv");
+		newContact.setMemo("Memo3 test");
+		newContact.setNickname("zxcv");
+		newContact.setPhone("010-3333-2604");
+		cm.addContact(newContact);
+		
+		System.out.println("전체 조회 결과");
+		cm.printAllContacts();
+		
+		List<Contact> searchResult = cm.search(contact -> contact.getName().contains("2"));
+		System.out.println("2 검색결과");
+		searchResult.forEach(System.out::println);
+		
+		searchResult = cm.search(contact -> contact.getPhone().endsWith("2604"));
+		System.out.println("2604 검색결과");
+		searchResult.forEach(System.out::println);
+		
+		cm.deleteContact(contact -> contact.getName().contains("z"));
+		System.out.println("2 삭제 후 전체 조회 결과");
+		cm.printAllContacts();
 	}
 
 }
