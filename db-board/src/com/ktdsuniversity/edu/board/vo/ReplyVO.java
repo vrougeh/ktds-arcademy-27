@@ -37,6 +37,11 @@ public class ReplyVO {
 	public void setwriteDate(String writeDate) {
 		this.writeDate = writeDate;
 	}
+	@Override
+	public String toString() {
+		return "ReplyVO [id=" + id + ", boardId=" + boardId + ", topId=" + topId + ", content=" + content
+				+ ", writeDate=" + writeDate + "]";
+	}
 	
 	
 
