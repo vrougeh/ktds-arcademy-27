@@ -26,10 +26,10 @@ public class ReplyDao {
 	
 	public List<ReplyVO> readAllReply(String articleId){
 		List<ReplyVO> result = new ArrayList<>();
-		dah.preparedStatement(ReplyQuery.makeSelectAllQuery(), (pstmt) -> {
+		this.dah.preparedStatement(ReplyQuery.makeSelectAllQuery(), (pstmt) -> {
 			pstmt.setString(1, articleId);
 		});
-		dah.executeQuery(SQLType.SELECT, rs -> {
+		this.dah.executeQuery(SQLType.SELECT, rs -> {
 			ReplyVO eachReply = new ReplyVO();
 			eachReply.setId(rs.getString("ID"));
 			eachReply.setboardId(rs.getString("BOARD_ID"));
@@ -47,10 +47,10 @@ public class ReplyDao {
 	// ReplyVO 댓글 조회(댓글 아이디)
 	public ReplyVO readReply(String replyId) {
 		ReplyVO result = new ReplyVO();
-		dah.preparedStatement(ReplyQuery.makeSelectOneQuery(), (pstmt) -> {
+		this.dah.preparedStatement(ReplyQuery.makeSelectOneQuery(), (pstmt) -> {
 			pstmt.setString(1, replyId);
 		});
-		dah.executeQuery(SQLType.SELECT, rs -> {
+		this.dah.executeQuery(SQLType.SELECT, rs -> {
 			result.setId(rs.getString("ID"));
 			result.setboardId(rs.getString("BOARD_ID"));
 			result.settopId(rs.getString("TOP_ID"));
@@ -66,10 +66,10 @@ public class ReplyDao {
 	// 댓글에 등록된 모든 대댓글 조회 (대댓글 포함) - 계층조회
 	public List<ReplyVO> readReplys(String replyId){
 		List<ReplyVO> result = new ArrayList<>();
-		dah.preparedStatement(ReplyQuery.makeSelectreplyQueryByReplyId(), (pstmt) -> {
+		this.dah.preparedStatement(ReplyQuery.makeSelectreplyQueryByReplyId(), (pstmt) -> {
 			pstmt.setString(1, replyId);
 		});
-		dah.executeQuery(SQLType.SELECT, rs -> {
+		this.dah.executeQuery(SQLType.SELECT, rs -> {
 			ReplyVO eachReply = new ReplyVO();
 			eachReply.setId(rs.getString("ID"));
 			eachReply.setboardId(rs.getString("BOARD_ID"));
@@ -85,30 +85,30 @@ public class ReplyDao {
 	
 	// void 댓글 등록(ReplyVO)
 	public void createNewReply(ReplyVO newReply) {
-		dah.preparedStatement(ReplyQuery.makeInsertQuery(), (pstmt) -> {
+		this.dah.preparedStatement(ReplyQuery.makeInsertQuery(), (pstmt) -> {
 			pstmt.setString(1, newReply.getboardId());
 			pstmt.setString(2, newReply.gettopId());
 			pstmt.setString(3, newReply.getContent());
 		});
-		dah.executeQuery(SQLType.INSERT, null);
+		this.dah.executeQuery(SQLType.INSERT, null);
 		
 	}
 	
 	// void 댓글 수정(ReplyVO)
 	public void modifyReply(ReplyVO modifyReply) {
-		dah.preparedStatement(ReplyQuery.makeUpdateQuery(), (pstmt) -> {
+		this.dah.preparedStatement(ReplyQuery.makeUpdateQuery(), (pstmt) -> {
 			pstmt.setString(1, modifyReply.getContent() );
 			pstmt.setString(2, modifyReply.getId() );
 		});
-		dah.executeQuery(SQLType.UPDATE, null);
+		this.dah.executeQuery(SQLType.UPDATE, null);
 	}
 	
 	// void 댓글 삭제(댓글 아이디)
 	public void deleteReply(String ReplyId) {
-		dah.preparedStatement(ReplyQuery.makeDeleteQuery(), (pstmt) -> {
+		this.dah.preparedStatement(ReplyQuery.makeDeleteQuery(), (pstmt) -> {
 			pstmt.setString(1, ReplyId);
 		});
-		dah.executeQuery(SQLType.DELETE, null);
+		this.dah.executeQuery(SQLType.DELETE, null);
 		
 	}
 
