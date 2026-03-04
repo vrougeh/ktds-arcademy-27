@@ -98,5 +98,4 @@ public class ReplyQuery {
 		return query.toString();
 	}
 	
-
 }

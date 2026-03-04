@@ -44,9 +44,6 @@ public class BoardDao {
 	}
 	
 	
-	
-	
-	
 	public void createNewArticle2(BoardVO newArticle) {
 		this.dah.preparedStatement(BoardQuery.makeInsertQuery(), (pstmt) -> {
 			pstmt.setString(1, newArticle.getTitle());
@@ -54,7 +51,6 @@ public class BoardDao {
 		});
 		this.dah.executeQuery(SQLType.INSERT, null);
 	}
-	
 	
 	
 	public int createNewArticle(BoardVO newArticle) {
@@ -203,10 +199,6 @@ public class BoardDao {
 		});
 		return result;
 	}
-	
-	
-	
-	
 	
 	
 

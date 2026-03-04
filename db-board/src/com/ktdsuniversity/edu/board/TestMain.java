@@ -83,7 +83,7 @@ public class TestMain {
 		System.out.println(replyList);
 		
 		
-		List<ReplyVO> replyList2 = replyService.readReplys("RP-20260304-000001");
+		List<ReplyVO> replyList2 = replyService.readReplys("RP-20260304-000027");
 		System.out.println(replyList2);
 		
 		
