@@ -72,8 +72,8 @@ public class ReplyQuery {
 		query.append("      , CONTENT                                                     ");
 		query.append("      , TO_CHAR(WRITE_DATE,'YYYY-MM-DD HH24:MI:SS') AS WRITE_DATE   ");
 		query.append("   FROM REPLY                                                       ");
-		query.append("  START WITH TOP_ID IS NULL                                         ");
 		query.append("  WHERE BOARD_ID = ?                                                ");
+		query.append("  START WITH TOP_ID IS NULL                                         ");
 //		query.append("  START WITH BOARD_ID = ?                                           ");
 		query.append("CONNECT BY PRIOR ID = TOP_ID                                        ");
 		
@@ -84,16 +84,16 @@ public class ReplyQuery {
 	public static String makeSelectreplyQueryByReplyId() {
 		StringBuffer query = new StringBuffer();
 		
-	query.append(" SELECT LEVEL                                                       ");
-	query.append("      , ID                                                          ");
-	query.append("      , BOARD_ID                                                    ");
-	query.append("      , TOP_ID                                                      ");
-	query.append("      , CONTENT                                                     ");
-	query.append("      , TO_CHAR(WRITE_DATE,'YYYY-MM-DD HH24:MI:SS') AS WRITE_DATE   ");
-	query.append("   FROM REPLY                                                       ");
-	query.append("  WHERE LEVEL > 1                                                   ");
-	query.append("  START WITH ID = ?                                                 ");
-	query.append("CONNECT BY PRIOR ID = TOP_ID                                        ");
+		query.append(" SELECT LEVEL                                                       ");
+		query.append("      , ID                                                          ");
+		query.append("      , BOARD_ID                                                    ");
+		query.append("      , TOP_ID                                                      ");
+		query.append("      , CONTENT                                                     ");
+		query.append("      , TO_CHAR(WRITE_DATE,'YYYY-MM-DD HH24:MI:SS') AS WRITE_DATE   ");
+		query.append("   FROM REPLY                                                       ");
+		query.append("  WHERE LEVEL > 1                                                   ");
+		query.append("  START WITH ID = ?                                                 ");
+		query.append("CONNECT BY PRIOR ID = TOP_ID                                        ");
 		
 		return query.toString();
 	}

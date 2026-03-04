@@ -18,47 +18,29 @@ import com.ktdsuniversity.edu.board.vo.BoardVO;
  */
 public class BoardDao {
 	
+	private DataAccessHelper dah;
+	
+	public BoardDao(DataAccessHelper dah) {
+		this.dah = dah;
+	}
+	
 	public void deleteArticle(String ArticleId) {
-		DataAccessHelper dah = new DataAccessHelper("localhost", 1521, "XE", "BOARD","BOARD");
-		
-		try {
-			dah.preparedStatement(BoardQuery.makeDeleteQuery(), (pstmt) -> {
-				pstmt.setString(1, ArticleId);
-			});
-			dah.executeQuery(SQLType.DELETE, null);
-			dah.commit();
-		}
-		catch(RuntimeException re) {
-			dah.rollback();
-			System.out.println(re.getMessage());
-		}
-		finally {
-			dah.close();
-		}
+		this.dah.preparedStatement(BoardQuery.makeDeleteQuery(), (pstmt) -> {
+			pstmt.setString(1, ArticleId);
+		});
+		this.dah.executeQuery(SQLType.DELETE, null);
+
 	}
 	
 	
-	
 	public void modifyArticle(BoardVO modifyArticle) {
-		DataAccessHelper dah = new DataAccessHelper("localhost", 1521, "XE", "BOARD","BOARD");
-		
-		try {
-			dah.preparedStatement(BoardQuery.makeUpdateQuery(), (pstmt) -> {
-				pstmt.setString(1, modifyArticle.getTitle());
-				pstmt.setString(2, modifyArticle.getContent());
-				pstmt.setString(3, modifyArticle.getId());
+		this.dah.preparedStatement(BoardQuery.makeUpdateQuery(), (pstmt) -> {
+			pstmt.setString(1, modifyArticle.getTitle());
+			pstmt.setString(2, modifyArticle.getContent());
+			pstmt.setString(3, modifyArticle.getId());
 
-			});
-			dah.executeQuery(SQLType.UPDATE, null);
-			dah.commit();
-		}
-		catch(RuntimeException re) {
-			dah.rollback();
-			System.out.println(re.getMessage());
-		}
-		finally {
-			dah.close();
-		}
+		});
+		this.dah.executeQuery(SQLType.UPDATE, null);
 	}
 	
 	
@@ -66,24 +48,11 @@ public class BoardDao {
 	
 	
 	public void createNewArticle2(BoardVO newArticle) {
-		
-		DataAccessHelper dah = new DataAccessHelper("localhost", 1521, "XE", "BOARD","BOARD");
-		
-		try {
-			dah.preparedStatement(BoardQuery.makeInsertQuery(), (pstmt) -> {
-				pstmt.setString(1, newArticle.getTitle());
-				pstmt.setString(2, newArticle.getContent());
-			});
-			dah.executeQuery(SQLType.INSERT, null);
-			dah.commit();
-		}
-		catch(RuntimeException re) {
-			dah.rollback();
-			System.out.println(re.getMessage());
-		}
-		finally {
-			dah.close();
-		}
+		this.dah.preparedStatement(BoardQuery.makeInsertQuery(), (pstmt) -> {
+			pstmt.setString(1, newArticle.getTitle());
+			pstmt.setString(2, newArticle.getContent());
+		});
+		this.dah.executeQuery(SQLType.INSERT, null);
 	}
 	
 	
@@ -184,83 +153,55 @@ public class BoardDao {
 		}
 	}
 	
-	public BoardVO readArticle(String articleId) {
-		DataAccessHelper dah = new DataAccessHelper("localhost", 1521, "XE", "BOARD","BOARD");
-		
-		try {
-			//UPDATE > 조회수 1 증가
-			dah.preparedStatement(BoardQuery.makeupdateViewCountQuery(), (pstmt) -> {
-				pstmt.setString(1, articleId);
-			});
-			dah.executeQuery(SQLType.UPDATE, null);
-			
-			
-			//SELECT > 게시글의 내용을 조회
-			BoardVO result = new BoardVO();
-			dah.preparedStatement(BoardQuery.makeSelectOneQuery(), (pstmt) -> {
-				pstmt.setString(1, articleId);
-			});
-			dah.executeQuery(SQLType.SELECT, rs -> {
-				result.setId(rs.getString("ID"));
-				result.setTitle(rs.getString("TITLE"));
-				result.setContent(rs.getString("CONTENT"));
-				result.setViewCount(rs.getInt("VIEW_COUNT"));
-				result.setWriteDate(rs.getString("WRITE_DATE"));
-				result.setLatestModifyDate(rs.getString("LATEST_MODIFY_DATE"));
-			});
-			
-			dah.commit();
-			
-			return result;
-		}
-		catch(RuntimeException re) {
-			dah.rollback();
-			System.out.println(re.getMessage());
-		}
-		finally {
-			dah.close();
-		}
-		
-		return null;
+	public void updateViewCount(String articleId) {
+		//UPDATE > 조회수 1 증가
+		this.dah.preparedStatement(BoardQuery.makeupdateViewCountQuery(), (pstmt) -> {
+			pstmt.setString(1, articleId);
+		});
+		this.dah.executeQuery(SQLType.UPDATE, null);
 	}
 	
 	
-	
-	
-	
+	public BoardVO readArticle(String articleId) {
+//		//UPDATE > 조회수 1 증가
+//		this.dah.preparedStatement(BoardQuery.makeupdateViewCountQuery(), (pstmt) -> {
+//			pstmt.setString(1, articleId);
+//		});
+//		this.dah.executeQuery(SQLType.UPDATE, null);
+		
+		//SELECT > 게시글의 내용을 조회
+		BoardVO result = new BoardVO();
+		this.dah.preparedStatement(BoardQuery.makeSelectOneQuery(), (pstmt) -> {
+			pstmt.setString(1, articleId);
+		});
+		this.dah.executeQuery(SQLType.SELECT, rs -> {
+			result.setId(rs.getString("ID"));
+			result.setTitle(rs.getString("TITLE"));
+			result.setContent(rs.getString("CONTENT"));
+			result.setViewCount(rs.getInt("VIEW_COUNT"));
+			result.setWriteDate(rs.getString("WRITE_DATE"));
+			result.setLatestModifyDate(rs.getString("LATEST_MODIFY_DATE"));
+		});
+		
+		return result;
+	}
 	
 	
 	public List<BoardVO> readAllArticle() {
-		DataAccessHelper dah = new DataAccessHelper("localhost", 1521, "XE", "BOARD","BOARD");
-		
-		try {
-			//SELECT > 게시글의 내용을 조회
-			List<BoardVO> result = new ArrayList<>();
-			dah.preparedStatement(BoardQuery.makeSelectAllQuery(),null);
-			dah.executeQuery(SQLType.SELECT, rs -> {
-				BoardVO eachArticle = new BoardVO();
-				eachArticle.setId(rs.getString("ID"));
-				eachArticle.setTitle(rs.getString("TITLE"));
-				eachArticle.setContent(rs.getString("CONTENT"));
-				eachArticle.setViewCount(rs.getInt("VIEW_COUNT"));
-				eachArticle.setWriteDate(rs.getString("WRITE_DATE"));
-				eachArticle.setLatestModifyDate(rs.getString("LATEST_MODIFY_DATE"));
-				result.add(eachArticle);
-			});
-			
-			dah.commit();
-			
-			return result;
-		}
-		catch(RuntimeException re) {
-			dah.rollback();
-			System.out.println(re.getMessage());
-		}
-		finally {
-			dah.close();
-		}
-		
-		return null;
+		//SELECT > 게시글의 내용을 조회
+		List<BoardVO> result = new ArrayList<>();
+		this.dah.preparedStatement(BoardQuery.makeSelectAllQuery(),null);
+		this.dah.executeQuery(SQLType.SELECT, rs -> {
+			BoardVO eachArticle = new BoardVO();
+			eachArticle.setId(rs.getString("ID"));
+			eachArticle.setTitle(rs.getString("TITLE"));
+			eachArticle.setContent(rs.getString("CONTENT"));
+			eachArticle.setViewCount(rs.getInt("VIEW_COUNT"));
+			eachArticle.setWriteDate(rs.getString("WRITE_DATE"));
+			eachArticle.setLatestModifyDate(rs.getString("LATEST_MODIFY_DATE"));
+			result.add(eachArticle);
+		});
+		return result;
 	}
 	
 	
