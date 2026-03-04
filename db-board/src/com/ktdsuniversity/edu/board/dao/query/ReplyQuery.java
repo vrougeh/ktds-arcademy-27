@@ -72,14 +72,16 @@ public class ReplyQuery {
 		query.append("      , CONTENT                                                     ");
 		query.append("      , TO_CHAR(WRITE_DATE,'YYYY-MM-DD HH24:MI:SS') AS WRITE_DATE   ");
 		query.append("   FROM REPLY                                                       ");
-		query.append("  START WITH BOARD_ID = ?                                           ");
+		query.append("  START WITH TOP_ID IS NULL                                         ");
+		query.append("  WHERE BOARD_ID = ?                                                ");
+//		query.append("  START WITH BOARD_ID = ?                                           ");
 		query.append("CONNECT BY PRIOR ID = TOP_ID                                        ");
 		
 		return query.toString();
 	}
 	
 	
-	public static String makeSelectreplysQuery() {
+	public static String makeSelectreplyQueryByReplyId() {
 		StringBuffer query = new StringBuffer();
 		
 	query.append(" SELECT LEVEL                                                       ");
@@ -89,7 +91,8 @@ public class ReplyQuery {
 	query.append("      , CONTENT                                                     ");
 	query.append("      , TO_CHAR(WRITE_DATE,'YYYY-MM-DD HH24:MI:SS') AS WRITE_DATE   ");
 	query.append("   FROM REPLY                                                       ");
-	query.append("  START WITH TOP_ID = ?                                             ");
+	query.append("  WHERE LEVEL > 1                                                   ");
+	query.append("  START WITH ID = ?                                                 ");
 	query.append("CONNECT BY PRIOR ID = TOP_ID                                        ");
 		
 		return query.toString();

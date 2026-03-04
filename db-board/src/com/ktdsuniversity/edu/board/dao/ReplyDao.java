@@ -92,7 +92,7 @@ public class ReplyDao {
 		DataAccessHelper dah = new DataAccessHelper("localhost", 1521, "XE", "BOARD","BOARD");
 		try {
 			List<ReplyVO> result = new ArrayList<>();
-			dah.preparedStatement(ReplyQuery.makeSelectreplysQuery(), (pstmt) -> {
+			dah.preparedStatement(ReplyQuery.makeSelectreplyQueryByReplyId(), (pstmt) -> {
 				pstmt.setString(1, replyId);
 			});
 			dah.executeQuery(SQLType.SELECT, rs -> {
